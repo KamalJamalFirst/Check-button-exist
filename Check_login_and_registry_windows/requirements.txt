@@ -1,0 +1,5 @@
+selenium==4.7.2
+pytest==7.1.2
+chromedriver==check your Chrome version
+geckodriver==check your Mozilla version
+
