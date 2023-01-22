@@ -32,4 +32,4 @@ def browser(request):
     else:
         raise pytest.UsageError('--please set acceptable browser: chrome or firefox')
     yield browser
-    time.sleep(20)
+    browser.quit()

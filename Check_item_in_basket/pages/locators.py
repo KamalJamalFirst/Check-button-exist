@@ -1,4 +1,3 @@
-from .base_page import BasePage
 from selenium.webdriver.common.by import By
 
 class MainPageLocators:
@@ -14,7 +13,7 @@ class PickedItemCharacteristics():
         for item in PickedItemCharacteristics.dict_for_item.keys():
             yield item
 
-class MainPageMessagesBeforeAddingItem():
+class MainPageMessagesAfterAddingItem():
     dict_for_massages = {
         1: {'GENERAL_FIELD_FOR_MESSAGES': (By.CSS_SELECTOR, '#messages')},
         2: {'MESSAGE_WITH_PICKED_NAME_BOOK': (By.CSS_SELECTOR, '#messages > div:first-child strong')},
@@ -22,5 +21,5 @@ class MainPageMessagesBeforeAddingItem():
     }
 
     def count_locators_dict_for_messages(self):
-        for key in MainPageMessagesBeforeAddingItem.dict_for_massages:
+        for key in MainPageMessagesAfterAddingItem.dict_for_massages:
             yield key
