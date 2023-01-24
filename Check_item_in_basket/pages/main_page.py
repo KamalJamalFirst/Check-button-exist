@@ -1,7 +1,9 @@
-import pytest
 from .base_page import BasePage
 from .locators import MainPageLocators, PickedItemCharacteristics, MainPageMessagesAfterAddingItem
 from .catch_exceptions import CatchExceptions
+from .locators import BasePageLocators
+from .login_page import LoginPage
+from .basket_page import BasketPage
 
 
 class MainPage(BasePage):
@@ -22,6 +24,16 @@ class MainPage(BasePage):
         basket_link = self.browser.find_element(*MainPageLocators.ADD_TO_BASKET_BUTTON)
         basket_link.click()
         self.solve_quiz_and_get_code()
+
+    def go_to_empty_basket_page(self):
+        empty_basket_link = self.browser.find_element(*BasePageLocators.SEE_EMPTY_BUSKET)
+        empty_basket_link.click()
+        return BasketPage(browser=self.browser, url=self.browser.current_url)
+
+    def go_to_login_page(self):
+        link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
+        link.click()
+        return LoginPage(browser=self.browser, url=self.browser.current_url)
 
     def before_going_to_basket_define_messages_check(self):
         for a in MainPageMessagesAfterAddingItem.count_locators_dict_for_messages(self):

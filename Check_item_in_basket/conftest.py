@@ -33,3 +33,4 @@ def browser(request):
         raise pytest.UsageError('--please set acceptable browser: chrome or firefox')
     yield browser
     browser.quit()
+

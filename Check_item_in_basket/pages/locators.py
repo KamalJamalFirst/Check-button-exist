@@ -1,5 +1,21 @@
 from selenium.webdriver.common.by import By
 
+class BasePageLocators():
+    LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
+    SEE_EMPTY_BUSKET = (By.CSS_SELECTOR, '.basket-mini a.btn.btn')
+    USER_ICON = (By.CSS_SELECTOR, ".icon-user")
+
+class BasketPageLocators():
+    SUMMARY_BASKET_EMPTY = (By.CSS_SELECTOR, '#content_inner .basket_summary')
+
+class LoginPageLocators():
+    LOGIN_FORM = (By.CSS_SELECTOR, '#login_form.well')
+    REGISTER_FORM = (By.CSS_SELECTOR, '#register_form.well')
+    REGISTER_USER_EMAIL = (By.CSS_SELECTOR, 'input#id_registration-email')
+    REGISTER_USER_PW1 = (By.CSS_SELECTOR, 'input#id_registration-password1')
+    REGISTER_USER_PW2 = (By.CSS_SELECTOR, 'input#id_registration-password2')
+    BUTTON_SUBMIT_REGISTER = (By.CSS_SELECTOR, "button[name*='registration']")
+
 class MainPageLocators:
     ADD_TO_BASKET_BUTTON = (By.CSS_SELECTOR, "[class*='btn-add-to-basket']")
 

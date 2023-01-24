@@ -2,7 +2,7 @@ from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from math import log, sin
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-import time
+from .locators import BasePageLocators
 
 
 class BasePage:
@@ -10,11 +10,22 @@ class BasePage:
         self.browser = browser
         self.url = url
 
+    def should_be_authorized_user(self):
+        assert self.is_element_present(BasePageLocators.USER_ICON), "User icon is not presented,\
+                                                                      probably unauthorised user"
+
+    def should_be_login_link(self):
+        try:
+            WebDriverWait(self.browser, 5).until(EC.presence_of_element_located(BasePageLocators.LOGIN_LINK))
+        except NoSuchElementException:
+            "Login link is not presented"
+        return True
+
     def open(self):
         self.browser.get(self.url)
 
-    def is_element_present(self, locators_type, key):
-        WebDriverWait(self.browser, 5).until(EC.presence_of_element_located(locators_type))
+    def is_element_present(self, locators_type, key=0):
+        WebDriverWait(self.browser, 10).until(EC.presence_of_element_located(locators_type))
         try:
             locator = self.browser.find_element(*locators_type)
             locator_text = locator.text
@@ -26,7 +37,6 @@ class BasePage:
         except NoSuchElementException:
             return False
         return True
-
 
     def solve_quiz_and_get_code(self):
         alert = self.browser.switch_to.alert
